@@ -86,13 +86,12 @@ def sample_pagerank(corpus, damping_factor, n):
         pageRank[page] = pageRank.get(page, 0) + 1
         # page = random.choice(samples)
         t_model = transition_model(corpus, page, damping_factor)
-        page = random.choices(
-            list(t_model.keys()), weights=list(t_model.values()), k=1
-        )
+        page = random.choices(list(t_model.keys()), weights=list(t_model.values()), k=1)
         page = page[0]
 
     for key in pageRank:
         pageRank[key] /= n
+
     return pageRank
 
 
@@ -112,9 +111,9 @@ def iterate_pagerank(corpus, damping_factor):
     for page in corpus:
         pageRankNew[page] = 1 / corpusLen
         nlinks[page] = len(corpus[page])
-        
+
     flag = True
-    while(flag):
+    while flag:
         flag = False
         pageRank = pageRankNew.copy()
         for page in corpus:
